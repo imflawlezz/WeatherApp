@@ -2,6 +2,9 @@
 //  OpenMeteoWeatherRepository.swift
 //  WeatherApp
 //
+//  `WeatherRepositoryProtocol` backed by Open-Meteo REST: geocode by name first,
+//  then unified forecast/current/hourly/daily decode + domain mapping on the main actor.
+//
 
 import Foundation
 
@@ -16,6 +19,8 @@ final class OpenMeteoWeatherRepository: WeatherRepositoryProtocol, @unchecked Se
         self.httpClient = httpClient
         self.reachability = reachability
     }
+
+    // MARK: - WeatherRepositoryProtocol
 
     func fetchWeather(
         cityQuery: String,
@@ -81,6 +86,8 @@ final class OpenMeteoWeatherRepository: WeatherRepositoryProtocol, @unchecked Se
         )
     }
 
+    // MARK: - Forecast request
+
     private static func requestForecast(
         httpClient: HTTPClientProtocol,
         coordinate: GeoCoordinate,
@@ -116,6 +123,8 @@ final class OpenMeteoWeatherRepository: WeatherRepositoryProtocol, @unchecked Se
             }
         }
     }
+
+    // MARK: - Decoding
 
     private static func makeDecoder() -> JSONDecoder {
         let d = JSONDecoder()

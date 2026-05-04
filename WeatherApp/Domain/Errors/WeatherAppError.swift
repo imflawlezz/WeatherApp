@@ -2,6 +2,9 @@
 //  WeatherAppError.swift
 //  WeatherApp
 //
+//  Cross-layer failure surface: networking, decoding, search validation, and location.
+//  UI maps these to string catalog keys via `WeatherAppError.localizationKey`.
+//
 
 import Foundation
 

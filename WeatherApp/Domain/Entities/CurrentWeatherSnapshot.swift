@@ -2,6 +2,9 @@
 //  CurrentWeatherSnapshot.swift
 //  WeatherApp
 //
+//  Snapshot of conditions at forecast request time. `conditionDescriptionKey` resolves through
+//  `WeatherL10n` / String Catalog (`wmo.*` keys).
+//
 
 import Foundation
 

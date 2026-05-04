@@ -2,6 +2,8 @@
 //  URLSessionHTTPClient.swift
 //  WeatherApp
 //
+//  Minimal anonymous GET abstraction over `URLSession`; maps failures to `WeatherAppError`.
+//
 
 import Foundation
 

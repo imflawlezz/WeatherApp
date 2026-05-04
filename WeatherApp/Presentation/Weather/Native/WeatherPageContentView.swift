@@ -2,8 +2,14 @@
 //  WeatherPageContentView.swift
 //  WeatherApp
 //
+//  Shared scrolling weather layout for both main tabs (GPS and search).
+//  Owns placeholder/shimmer loading, offline/error placeholders, grouped sections,
+//  and hourly sun markers derived from today's sunrise/sunset.
+//
 
 import SwiftUI
+
+// MARK: - WeatherPageContentView
 
 struct WeatherPageContentView: View {
     let forecast: CityWeatherForecast?
@@ -13,6 +19,8 @@ struct WeatherPageContentView: View {
 
     @Environment(\.temperatureUnit) private var tempUnit
     @Environment(\.locale) private var locale
+
+    // MARK: - Body
 
     var body: some View {
         Group {
@@ -93,6 +101,8 @@ struct WeatherPageContentView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(.systemGroupedBackground))
     }
+
+    // MARK: - Sections
 
     @ViewBuilder
     private func hero(for forecast: CityWeatherForecast) -> some View {
@@ -238,6 +248,8 @@ struct WeatherPageContentView: View {
         }
     }
 
+    // MARK: - Metric tile
+
     private func metricCard<V: View>(icon: String, titleKey: String, @ViewBuilder value: () -> V) -> some View {
         VStack(alignment: .leading, spacing: 10) {
             Image(systemName: icon)
@@ -326,6 +338,8 @@ struct WeatherPageContentView: View {
         }
     }
 
+    // MARK: - Week temperature bar
+
     private func temperatureRangeBar(dayMin: Double, dayMax: Double, weekMin: Double, weekMax: Double) -> some View {
         let span = max(1, weekMax - weekMin)
         let start = (dayMin - weekMin) / span
@@ -347,6 +361,8 @@ struct WeatherPageContentView: View {
         .frame(height: 6)
     }
 }
+
+// MARK: - Hourly strip (sun window & skeleton row)
 
 private extension WeatherPageContentView {
     struct SunWindow {
@@ -453,6 +469,8 @@ private extension WeatherPageContentView {
         }
     }
 }
+
+// MARK: - Placeholder forecast
 
 private extension WeatherPageContentView {
     static var placeholderForecast: CityWeatherForecast {

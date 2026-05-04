@@ -2,6 +2,8 @@
 //  WindDirectionFormatter.swift
 //  WeatherApp
 //
+//  Maps meteorological degrees to eight-point compass keys (`wind.*`) and arrow SF Symbols.
+//
 
 import Foundation
 

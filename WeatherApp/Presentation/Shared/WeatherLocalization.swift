@@ -2,10 +2,14 @@
 //  WeatherLocalization.swift
 //  WeatherApp
 //
+//  Bridges String Catalog / legacy `.lproj` bundles: tries language + region tags, then falls
+//  back to bundle search. Also hosts a few string tweaks for title-style dates.
+//
 
 import Foundation
 
 enum WeatherL10n {
+    /// Resolves a localization key for the given `Locale`, probing `Bundle` language variants in order.
     static func string(_ key: String, locale: Locale) -> String {
         let missingSentinel = "\u{FFFC}"
         for code in candidateLanguageCodes(locale) {
@@ -24,6 +28,8 @@ enum WeatherL10n {
         }
         return key
     }
+
+    // MARK: - Bundle lookup
 
     private static func candidateLanguageCodes(_ locale: Locale) -> [String] {
         var ids: [String] = []
@@ -46,6 +52,9 @@ enum WeatherL10n {
         return ids
     }
 
+    // MARK: - Date caption polish
+
+    /// Title-casing helper: capitalizes the letter after the comma in a long formatted date.
     static func titleStyleDateSubstringAfterComma(in formattedDate: String, locale: Locale) -> String {
         guard let range = formattedDate.range(of: ", ") else { return formattedDate }
         let head = formattedDate[..<range.upperBound]
@@ -61,6 +70,7 @@ enum WeatherL10n {
         return String(head) + String(before) + capped + String(afterTail)
     }
 
+    /// Capitalizes the first letter in `string` respecting `Locale` rules (not `.capitalized`, which over-modifies).
     static func capitalizeFirstLetter(in string: String, locale: Locale) -> String {
         guard let letterIdx = string.firstIndex(where: { $0.isLetter }) else { return string }
         let before = string[..<letterIdx]

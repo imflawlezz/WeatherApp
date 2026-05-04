@@ -2,8 +2,12 @@
 //  Shimmer.swift
 //  WeatherApp
 //
+//  Lightweight diagonal sweep used while list-style content is `.redacted`/loading; masks to the host view's alpha.
+//
 
 import SwiftUI
+
+// MARK: - Modifier
 
 struct ShimmerModifier: ViewModifier {
     @Environment(\.colorScheme) private var colorScheme
@@ -65,6 +69,8 @@ struct ShimmerModifier: ViewModifier {
         )
     }
 }
+
+// MARK: - View
 
 extension View {
     func shimmer(_ enabled: Bool) -> some View {

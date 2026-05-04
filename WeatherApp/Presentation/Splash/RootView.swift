@@ -2,6 +2,9 @@
 //  RootView.swift
 //  WeatherApp
 //
+//  Holds `MainTabView` under an initial splash overlay. Backdrop fills match the
+//  app icon gradient endpoints documented in `WeatherReport.icon/icon.json`.
+//
 
 import SwiftUI
 

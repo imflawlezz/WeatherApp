@@ -2,6 +2,9 @@
 //  WeatherSymbol.swift
 //  WeatherApp
 //
+//  Opinionated `.palette` styling for SF weather symbols - keeps glyphs visually consistent across
+//  cards while staying independent of monochrome navigation chrome.
+//
 
 import SwiftUI
 
@@ -27,6 +30,8 @@ struct WeatherSymbol: View {
             .accessibilityHidden(true)
     }
 }
+
+// MARK: - Palettes
 
 private extension WeatherSymbol {
     struct Palette {

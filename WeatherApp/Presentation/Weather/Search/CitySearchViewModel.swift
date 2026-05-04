@@ -2,6 +2,9 @@
 //  CitySearchViewModel.swift
 //  WeatherApp
 //
+//  Text field + async search via `FetchCityForecastUseCase`; optional "default city" hint
+//  from settings is applied idempotently (`lastAutoSearchHint` guards duplicate fetches).
+//
 
 import Foundation
 

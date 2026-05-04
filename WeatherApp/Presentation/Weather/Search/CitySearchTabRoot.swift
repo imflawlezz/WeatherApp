@@ -2,6 +2,9 @@
 //  CitySearchTabRoot.swift
 //  WeatherApp
 //
+//  Search tab wrapper: `.searchable`, submit/refresh wiring, tap-to-dismiss keyboard, and
+//  optional auto-run when `defaultCityHint` changes in settings.
+//
 
 import SwiftUI
 

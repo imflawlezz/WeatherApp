@@ -2,6 +2,9 @@
 //  OpenMeteoForecastDTO.swift
 //  WeatherApp
 //
+//  Codable mirror of Open-Meteo's `/v1/forecast` JSON. Some fields accept either `weather_code`
+//  or legacy `weathercode`; custom `init(from:)` normalizes that for current + hourly blocks.
+//
 
 import Foundation
 
@@ -10,6 +13,8 @@ struct OpenMeteoForecastDTO: Decodable {
     let hourly: OpenMeteoHourlyDTO?
     let daily: OpenMeteoDailyDTO
 }
+
+// MARK: - Current
 
 struct OpenMeteoCurrentDTO: Decodable {
     let time: String
@@ -53,6 +58,8 @@ struct OpenMeteoCurrentDTO: Decodable {
     }
 }
 
+// MARK: - Hourly
+
 struct OpenMeteoHourlyDTO: Decodable {
     let time: [String]
     let temperature2m: [Double]
@@ -76,6 +83,8 @@ struct OpenMeteoHourlyDTO: Decodable {
         }
     }
 }
+
+// MARK: - Daily
 
 struct OpenMeteoDailyDTO: Decodable {
     let time: [String]

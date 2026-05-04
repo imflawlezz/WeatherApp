@@ -2,10 +2,14 @@
 //  WMOWeatherPresentationMapper.swift
 //  WeatherApp
 //
+//  Bridges Open-Meteo WMO weather codes to SF Symbol names and `Localizable` keys (`wmo.*`).
+//
 
 import Foundation
 
 enum WMOWeatherPresentationMapper {
+    // MARK: - Symbols
+
     static func symbolName(forWMOCode code: Int) -> String {
         switch code {
         case 0: return "sun.max.fill"
@@ -27,6 +31,8 @@ enum WMOWeatherPresentationMapper {
         default: return "cloud.sun.fill"
         }
     }
+
+    // MARK: - Localized keys
 
     static func descriptionKey(forWMOCode code: Int) -> String {
         switch code {

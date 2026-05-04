@@ -2,6 +2,9 @@
 //  CurrentLocationTabRoot.swift
 //  WeatherApp
 //
+//  GPS tab shell: `WeatherPageContentView` inside a navigation stack, pull-to-refresh, and
+//  `NavigationLink` routing to `DayDetailView`.
+//
 
 import SwiftUI
 

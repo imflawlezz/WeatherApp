@@ -2,9 +2,13 @@
 //  FetchCityForecastUseCase.swift
 //  WeatherApp
 //
+//  Validates user search input (trim, minimum length) before delegating to the repository,
+//  so presenters don't need to reconstruct those rules.
+//
 
 import Foundation
 
+/// Search-by-name facade used by SwiftUI presenters.
 public protocol FetchCityForecastUseCaseProtocol: Sendable {
     func execute(
         cityQuery: String,
@@ -12,6 +16,7 @@ public protocol FetchCityForecastUseCaseProtocol: Sendable {
     )
 }
 
+/// Default implementation wired from `WeatherDependencies.make()`.
 public struct FetchCityForecastUseCase: FetchCityForecastUseCaseProtocol {
     private let repository: WeatherRepositoryProtocol
     private let minimumQueryLength: Int

@@ -2,10 +2,14 @@
 //  OpenMeteoAPI.swift
 //  WeatherApp
 //
+//  URL construction for Open-Meteo's geocoding service and consolidated forecast endpoint.
+//
 
 import Foundation
 
 enum OpenMeteoAPI {
+    // MARK: - Geocoding
+
     static func geocodeURL(query: String) -> URL? {
         var components = URLComponents(string: "https://geocoding-api.open-meteo.com/v1/search")
         components?.queryItems = [
@@ -16,6 +20,8 @@ enum OpenMeteoAPI {
         ]
         return components?.url
     }
+
+    // MARK: - Forecast
 
     static func forecastURL(coordinate: GeoCoordinate) -> URL? {
         var components = URLComponents(string: "https://api.open-meteo.com/v1/forecast")

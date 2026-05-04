@@ -2,6 +2,9 @@
 //  CoreLocationPlaceResolver.swift
 //  WeatherApp
 //
+//  Reverse-geocodes a coordinate to a short display line (`MKAddress`),
+//  falling back to a localized stub when Maps returns nothing usable.
+//
 
 import CoreLocation
 import Foundation

@@ -2,10 +2,15 @@
 //  OpenMeteoForecastMapper.swift
 //  WeatherApp
 //
+//  Translates Open-Meteo DTO timestamps (strings in local / ISO flavors) plus array indices
+//  into immutable domain models (`CityWeatherForecast`). Throws `WeatherAppError` on shape mismatch.
+//
 
 import Foundation
 
 enum OpenMeteoForecastMapper {
+    // MARK: - Date parsing (Open-Meteo payload quirks)
+
     private static let dayFormatter: ISO8601DateFormatter = {
         let f = ISO8601DateFormatter()
         f.formatOptions = [.withFullDate, .withDashSeparatorInDate]
@@ -60,6 +65,8 @@ enum OpenMeteoForecastMapper {
         return f
     }()
 
+    // MARK: - Public
+
     static func mapWeatherForecast(
         displayName: String,
         coordinate: GeoCoordinate,
@@ -76,6 +83,8 @@ enum OpenMeteoForecastMapper {
             days: days
         )
     }
+
+    // MARK: - Current & hourly
 
     private static func mapCurrent(_ dto: OpenMeteoCurrentDTO?) -> CurrentWeatherSnapshot? {
         guard let c = dto else { return nil }
@@ -127,6 +136,8 @@ enum OpenMeteoForecastMapper {
         if let d = hourlyLocalTime.date(from: raw) { return d }
         return hourlyLocalTimeWithSeconds.date(from: raw)
     }
+
+    // MARK: - Daily seven-day window
 
     private static func mapDaily(_ d: OpenMeteoDailyDTO) throws -> [ForecastDay] {
         let count = d.time.count

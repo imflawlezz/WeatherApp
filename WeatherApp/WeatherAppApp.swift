@@ -2,6 +2,9 @@
 //  WeatherAppApp.swift
 //  WeatherApp
 //
+//  App entry point: builds the composition root, kicks off `RootView`,
+//  and applies an optional language override from `@AppStorage`.
+//
 
 import SwiftUI
 

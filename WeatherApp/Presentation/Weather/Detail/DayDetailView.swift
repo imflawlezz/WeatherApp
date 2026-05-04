@@ -2,6 +2,9 @@
 //  DayDetailView.swift
 //  WeatherApp
 //
+//  Row selected from `WeatherPageContentView`'s week list - mirrors headline metrics plus
+//  structured detail rows formatted with locale-aware units/strings.
+//
 
 import SwiftUI
 
@@ -10,6 +13,8 @@ struct DayDetailView: View {
 
     @Environment(\.temperatureUnit) private var temperatureUnit
     @Environment(\.locale) private var locale
+
+    // MARK: - Body
 
     var body: some View {
         ScrollView {
@@ -37,6 +42,8 @@ struct DayDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .background(Color(.systemGroupedBackground))
     }
+
+    // MARK: - Cards
 
     private var headerCard: some View {
         HStack(spacing: 14) {
@@ -129,6 +136,8 @@ struct DayDetailView: View {
         .background(RoundedRectangle(cornerRadius: 16, style: .continuous).fill(Color(.secondarySystemGroupedBackground)))
     }
 
+    // MARK: - Rows
+
     private var windRow: some View {
         let directionKey = WindDirectionFormatter.localizationKey(degrees: day.detail.windDirectionDegrees)
         let directionText = WeatherL10n.string(directionKey, locale: locale)
@@ -158,6 +167,8 @@ struct DayDetailView: View {
         }
         .padding(.vertical, 10)
     }
+
+    // MARK: - Formatting helpers
 
     private func row(icon: String, title: String, value: String) -> some View {
         HStack(spacing: 10) {

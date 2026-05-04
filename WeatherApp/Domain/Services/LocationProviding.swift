@@ -2,6 +2,9 @@
 //  LocationProviding.swift
 //  WeatherApp
 //
+//  Lightweight abstraction around Core Location authorization + a best-effort GPS fix,
+//  expressed as typed `WeatherAppError` outcomes for the caller.
+//
 
 import Foundation
 

@@ -2,6 +2,8 @@
 //  GeoCoordinate.swift
 //  WeatherApp
 //
+//  Shared latitude/longitude value type for repository + mapping layers.
+//
 
 import Foundation
 

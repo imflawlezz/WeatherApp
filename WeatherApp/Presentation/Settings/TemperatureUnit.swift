@@ -2,6 +2,9 @@
 //  TemperatureUnit.swift
 //  WeatherApp
 //
+//  Metric vs imperial toggle stored in `AppStorage`, exposed as `EnvironmentValues.temperatureUnit`,
+//  with small number formatters shared by multiple weather views.
+//
 
 import SwiftUI
 
@@ -11,6 +14,8 @@ enum TemperatureUnit: String, CaseIterable, Identifiable {
 
     var id: String { rawValue }
 }
+
+// MARK: - Environment
 
 private struct TemperatureUnitKey: EnvironmentKey {
     static let defaultValue: TemperatureUnit = .metric
@@ -22,6 +27,8 @@ extension EnvironmentValues {
         set { self[TemperatureUnitKey.self] = newValue }
     }
 }
+
+// MARK: - Formatters
 
 enum WeatherFormatters {
     static func temperature(_ celsius: Double, unit: TemperatureUnit) -> String {

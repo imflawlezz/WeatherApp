@@ -2,6 +2,9 @@
 //  WeatherDependencies.swift
 //  WeatherApp
 //
+//  Single place wiring concrete services (`OpenMeteo`, Core Location, URLs)
+//  for use by SwiftUI.
+//
 
 import Foundation
 

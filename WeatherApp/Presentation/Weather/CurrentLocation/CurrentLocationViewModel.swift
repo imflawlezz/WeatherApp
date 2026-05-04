@@ -2,6 +2,9 @@
 //  CurrentLocationViewModel.swift
 //  WeatherApp
 //
+//  Orchestrates authorization, a fresh coordinate, reverse geocoding, and repository fetch for
+//  the GPS tab. Surfaced state is plain properties for `@Bindable` consumers.
+//
 
 import Foundation
 

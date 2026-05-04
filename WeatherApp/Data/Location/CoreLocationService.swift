@@ -2,6 +2,9 @@
 //  CoreLocationService.swift
 //  WeatherApp
 //
+//  `LocationProviding` via `CLLocationManager`: resolves permission churn and one-shot fixes
+//  on the main actor while satisfying delegate concurrency requirements (`nonisolated`).
+//
 
 import CoreLocation
 import Foundation
@@ -16,6 +19,8 @@ final class CoreLocationService: NSObject, LocationProviding, CLLocationManagerD
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyHundredMeters
     }
+
+    // MARK: - LocationProviding
 
     func requestWhenInUseAuthorization() {
         manager.requestWhenInUseAuthorization()
@@ -36,6 +41,8 @@ final class CoreLocationService: NSObject, LocationProviding, CLLocationManagerD
             coordinateCompletion = nil
         }
     }
+
+    // MARK: - CLLocationManagerDelegate
 
     nonisolated func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         Task { @MainActor in

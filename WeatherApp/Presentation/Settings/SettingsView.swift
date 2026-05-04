@@ -2,6 +2,9 @@
 //  SettingsView.swift
 //  WeatherApp
 //
+//  User-facing preferences (`AppStorage`): language override, temperature units, default search
+//  hint, plus a keyboard "Done" shortcut for the city field.
+//
 
 import SwiftUI
 

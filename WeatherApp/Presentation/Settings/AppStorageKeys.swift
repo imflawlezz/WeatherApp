@@ -2,6 +2,8 @@
 //  AppStorageKeys.swift
 //  WeatherApp
 //
+//  Centralized `@AppStorage` / `UserDefaults` key strings to avoid typos across SwiftUI views.
+//
 
 import Foundation
 

@@ -2,8 +2,13 @@
 //  ForecastDay.swift
 //  WeatherApp
 //
+//  Seven-day window: `summary` drives list rows; `detail` powers the day drill-in + sun times.
+//  `CityWeatherForecast` is the aggregate handed to SwiftUI (`WeatherPageContentView`).
+//
 
 import Foundation
+
+// MARK: - Day
 
 public struct ForecastDay: Sendable, Hashable, Identifiable {
     public let id: String
@@ -18,6 +23,8 @@ public struct ForecastDay: Sendable, Hashable, Identifiable {
         self.detail = detail
     }
 }
+
+// MARK: - Summary & detail
 
 public struct ForecastDaySummary: Sendable, Hashable {
     public let tempMinCelsius: Double
@@ -71,6 +78,8 @@ public struct ForecastDayDetail: Sendable, Hashable {
         self.sunset = sunset
     }
 }
+
+// MARK: - Aggregate
 
 public struct CityWeatherForecast: Sendable, Hashable {
     public let displayName: String

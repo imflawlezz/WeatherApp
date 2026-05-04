@@ -2,6 +2,9 @@
 //  MainTabView.swift
 //  WeatherApp
 //
+//  Primary `TabView` plus owned view models for "here" (GPS) and search.
+//  Injects `temperatureUnit` into the environment for child formatters/views.
+//
 
 import SwiftUI
 
@@ -36,6 +39,8 @@ struct MainTabView: View {
     private var temperatureUnit: TemperatureUnit {
         TemperatureUnit(rawValue: temperatureUnitRaw) ?? .metric
     }
+
+    // MARK: - Tab bar
 
     var body: some View {
         TabView(selection: $selection) {

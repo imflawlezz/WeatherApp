@@ -2,6 +2,8 @@
 //  WeatherAppError+UserText.swift
 //  WeatherApp
 //
+//  Presentation shim from domain errors to localization keys surfaced in SwiftUI placeholders.
+//
 
 import Foundation
 

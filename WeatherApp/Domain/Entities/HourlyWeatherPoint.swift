@@ -2,6 +2,8 @@
 //  HourlyWeatherPoint.swift
 //  WeatherApp
 //
+//  Single hour in the near-term strip; `id` is the raw Open-Meteo time string for stable diffing.
+//
 
 import Foundation
 

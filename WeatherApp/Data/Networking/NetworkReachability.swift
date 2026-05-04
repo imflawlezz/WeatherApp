@@ -2,6 +2,8 @@
 //  NetworkReachability.swift
 //  WeatherApp
 //
+//  Wraps `NWPathMonitor` for a synchronous "path satisfied?" check before network work.
+//
 
 import Foundation
 import Network

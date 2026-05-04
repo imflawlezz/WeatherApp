@@ -2,6 +2,9 @@
 //  WeatherRepositoryProtocol.swift
 //  WeatherApp
 //
+//  Domain-level facade for retrieving a `CityWeatherForecast` either free-text (`cityQuery`)
+//  or pinned to geographic coordinates (`at:displayName:`).
+//
 
 import Foundation
 

@@ -2,6 +2,9 @@
 //  PlaceNameResolving.swift
 //  WeatherApp
 //
+//  Human-readable place line for a coordinate (used as `CityWeatherForecast.displayName`
+//  on the "current location" path).
+//
 
 import Foundation
 
