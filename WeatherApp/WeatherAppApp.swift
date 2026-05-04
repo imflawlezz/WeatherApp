@@ -2,16 +2,29 @@
 //  WeatherAppApp.swift
 //  WeatherApp
 //
-//  Created by Yahor Artsiomchyk on 25/04/2026.
-//
 
 import SwiftUI
 
 @main
 struct WeatherAppApp: App {
+    @State private var deps = WeatherDependencies.make()
+    @AppStorage(AppStorageKeys.localeOverride) private var localeOverride = ""
+
+    init() {
+        UserDefaults.standard.register(defaults: ["UseFloatingTabBar": false])
+    }
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView(deps: deps)
+                .environment(\.locale, localeForOverride(localeOverride))
         }
+    }
+
+    private func localeForOverride(_ id: String) -> Locale {
+        if id.isEmpty {
+            return Locale.autoupdatingCurrent
+        }
+        return Locale(identifier: id)
     }
 }
