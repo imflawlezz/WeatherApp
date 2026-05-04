@@ -7,10 +7,7 @@
 //
 
 import SwiftUI
-
-#if canImport(UIKit)
 import UIKit
-#endif
 
 struct SettingsView: View {
     @AppStorage(AppStorageKeys.localeOverride) private var localeOverride = ""
@@ -83,11 +80,7 @@ struct SettingsView: View {
         }
     }
 
-#if canImport(UIKit)
     private func dismissKeyboardIfNeeded() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
-#else
-    private func dismissKeyboardIfNeeded() {}
-#endif
 }

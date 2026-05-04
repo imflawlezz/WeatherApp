@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct CitySearchTabRoot: View {
     @Bindable var viewModel: CitySearchViewModel
@@ -58,8 +59,6 @@ struct CitySearchTabRoot: View {
     }
 
     private func dismissKeyboard() {
-        #if canImport(UIKit)
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-        #endif
     }
 }
