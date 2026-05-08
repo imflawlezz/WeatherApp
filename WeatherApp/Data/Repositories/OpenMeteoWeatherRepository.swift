@@ -30,7 +30,7 @@ final class OpenMeteoWeatherRepository: WeatherRepositoryProtocol, @unchecked Se
             completion(.failure(.notConnectedToInternet))
             return
         }
-        guard let geocodeURL = OpenMeteoAPI.geocodeURL(query: cityQuery) else {
+        guard let geocodeURL = OpenMeteoAPI.geocodeURL(query: cityQuery, language: preferredLanguageIdentifier()) else {
             completion(.failure(.invalidResponse))
             return
         }
@@ -130,5 +130,11 @@ final class OpenMeteoWeatherRepository: WeatherRepositoryProtocol, @unchecked Se
         let d = JSONDecoder()
         d.keyDecodingStrategy = .useDefaultKeys
         return d
+    }
+
+    private func preferredLanguageIdentifier() -> String? {
+        let override = UserDefaults.standard.string(forKey: AppStorageKeys.localeOverride) ?? ""
+        if !override.isEmpty { return override }
+        return Bundle.main.preferredLocalizations.first
     }
 }

@@ -10,14 +10,19 @@ import Foundation
 enum OpenMeteoAPI {
     // MARK: - Geocoding
 
-    static func geocodeURL(query: String) -> URL? {
+    static func geocodeURL(query: String, language: String?) -> URL? {
         var components = URLComponents(string: "https://geocoding-api.open-meteo.com/v1/search")
-        components?.queryItems = [
+        var items: [URLQueryItem] = [
             URLQueryItem(name: "name", value: query),
             URLQueryItem(name: "count", value: "1"),
-            URLQueryItem(name: "language", value: "en"),
             URLQueryItem(name: "format", value: "json"),
         ]
+        if let language, !language.isEmpty {
+            items.append(URLQueryItem(name: "language", value: language))
+        } else {
+            items.append(URLQueryItem(name: "language", value: "en"))
+        }
+        components?.queryItems = items
         return components?.url
     }
 
