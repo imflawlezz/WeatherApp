@@ -23,7 +23,7 @@ struct WeatherDependencies {
             reachability: reachability
         )
         let location = CoreLocationService()
-        let placeResolver = CoreLocationPlaceResolver()
+        let placeResolver = NominatimPlaceResolver(httpClient: httpClient)
         let fetchCityForecast = FetchCityForecastUseCase(repository: repository, minimumQueryLength: 1)
         return WeatherDependencies(
             repository: repository,
