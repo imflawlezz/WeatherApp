@@ -18,6 +18,7 @@ final class CurrentLocationViewModel {
     private let repository: WeatherRepositoryProtocol
     private let location: LocationProviding
     private let placeResolver: PlaceNameResolving
+    private var lastCoordinate: GeoCoordinate?
 
     init(
         repository: WeatherRepositoryProtocol,
@@ -46,6 +47,7 @@ final class CurrentLocationViewModel {
                     self.errorLocalizationKey = error.localizationKey
                     onComplete?()
                 case let .success(coordinate):
+                    self.lastCoordinate = coordinate
                     self.placeResolver.resolveDisplayLine(for: coordinate) { name in
                         self.repository.fetchWeather(at: coordinate, displayName: name) { res in
                             Task { @MainActor in
@@ -61,6 +63,23 @@ final class CurrentLocationViewModel {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    func refreshDisplayNameForCurrentCoordinate() {
+        guard let lastCoordinate else { return }
+        placeResolver.resolveDisplayLine(for: lastCoordinate) { [weak self] name in
+            Task { @MainActor in
+                guard let self, let old = self.forecast else { return }
+                guard old.coordinate == lastCoordinate else { return }
+                self.forecast = CityWeatherForecast(
+                    displayName: name,
+                    coordinate: old.coordinate,
+                    current: old.current,
+                    hourly: old.hourly,
+                    days: old.days
+                )
             }
         }
     }

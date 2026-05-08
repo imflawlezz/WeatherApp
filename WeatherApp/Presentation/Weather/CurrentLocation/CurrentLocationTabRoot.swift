@@ -38,5 +38,8 @@ struct CurrentLocationTabRoot: View {
                 viewModel.refresh()
             }
         }
+        .onChange(of: locale) { _, _ in
+            viewModel.refreshDisplayNameForCurrentCoordinate()
+        }
     }
 }
